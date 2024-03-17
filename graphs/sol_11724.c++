@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 
 using namespace std;
-
+ 
 vector<int> v[1001];
 bool chk[1001];
 int n, m, cnt = 0;
@@ -19,10 +19,10 @@ void DFS(int rt) {
 
 
 int main() {
-	//Á¤Á¡ n, °£¼± m
+	//ì •ì  n, ê°„ì„  m
 	cin >> n >> m;
 
-	//°£¼±ÀÇ ¾ç ³¡Á¡ ÀÔ·Â¹Ş±â
+	//ê°„ì„ ì˜ ì–‘ ëì  ì…ë ¥ë°›ê¸°
 	for (int i = 0; i < m; i++) {
 		int p, q;
 		cin >> p >> q;
