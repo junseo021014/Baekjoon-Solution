@@ -1,5 +1,5 @@
 #include <bits/stdc++.h>
-#define fastio ios_base::sync_with_stdio(false);cin.tie(nullptr);cout.tie(nullptr);
+#define fastio ios_base::sync_with_stdio(false);cin.tie(nullptr);cout.tie(nullptr); 
 
 using namespace std;
 
@@ -11,10 +11,10 @@ int yy[4] = { 1,-1,0,0 };
 int cnt = 0;
 
 void dfs(int x, int y) {
-	// ¹æ¹® Ç¥½Ã
+	// ë°©ë¬¸ í‘œì‹œ
 	isVisited[x][y] = 1;
 
-	// µ¿¼­³²ºÏÀ¸·Î ÇÑÄ­¾¿ ¿òÁ÷ÀÌ¸é¼­ dfs ½ÇÇà
+	// ë™ì„œë‚¨ë¶ìœ¼ë¡œ í•œì¹¸ì”© ì›€ì§ì´ë©´ì„œ dfs ì‹¤í–‰
 	for (int i = 0; i < 4; ++i) {
 		int X = x + xx[i];
 		int Y = y + yy[i];
@@ -27,19 +27,19 @@ void dfs(int x, int y) {
 int sol(int m, int n, int k) {
 	int x, y;
 
-	// (x, y) ÁÂÇ¥¿¡ ¹èÃß ÀÔ·Â
+	// (x, y) ì¢Œí‘œì— ë°°ì¶” ì…ë ¥
 	for (int i = 0; i < k; ++i) {
 		cin >> x >> y;
 		ground[x][y] = 1;
 	}
 	
-	// ÇÊ¿äÇÑ Áö··ÀÌ ¼ö
+	// í•„ìš”í•œ ì§€ë ì´ ìˆ˜
 	cnt = 0;
 
-	// ÁÂÇ¥¸¦ ÈÈÀ¸¸é¼­ ¹èÃß°¡ ÀÖÀ¸¸é dfs½ÇÇà
+	// ì¢Œí‘œë¥¼ í›‘ìœ¼ë©´ì„œ ë°°ì¶”ê°€ ìˆìœ¼ë©´ dfsì‹¤í–‰
 	for (int j = 0; j < m; ++j) {
 		for (int p = 0; p < n; ++p) {
-			// ¹èÃß°¡ ÀÖ°í, ¹æ¹®ÇÏÁö ¾Ê¾Ò´Ù¸é dfs ½ÇÇàÇÏ°í ÁÖÀ§¿¡ ¹èÃß°¡ ¾ø¾î dfs Á¾·á½Ã cnt Áõ°¡
+			// ë°°ì¶”ê°€ ìˆê³ , ë°©ë¬¸í•˜ì§€ ì•Šì•˜ë‹¤ë©´ dfs ì‹¤í–‰í•˜ê³  ì£¼ìœ„ì— ë°°ì¶”ê°€ ì—†ì–´ dfs ì¢…ë£Œì‹œ cnt ì¦ê°€
 			if (ground[j][p] == 1 && !isVisited[j][p]) {
 				dfs(j, p);
 				cnt++;
