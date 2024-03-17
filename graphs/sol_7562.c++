@@ -2,7 +2,7 @@
 #define fastio ios_base::sync_with_stdio(false);cin.tie(nullptr);cout.tie(nullptr);
 
 using namespace std;
-
+ 
 int t;
 int maps[301][301];
 bool isVisited[301][301];
@@ -13,9 +13,9 @@ int sx, sy, ax, ay;
 
 void bfs(int xcur, int ycur, int length) {
     queue <pair<int, int>> q;
-    q.push(make_pair(xcur, ycur)); // ÇöÀç ÁÂÇ¥·Î Å¥ ¿ä¼Ò Ãß°¡
-    isVisited[xcur][ycur] = true; // ¹æ¹® Ç¥½Ã
-    dist[xcur][ycur] = 0; // ÀÌµ¿ÇÑ È½¼ö
+    q.push(make_pair(xcur, ycur)); // í˜„ì¬ ì¢Œí‘œë¡œ í ìš”ì†Œ ì¶”ê°€
+    isVisited[xcur][ycur] = true; // ë°©ë¬¸ í‘œì‹œ
+    dist[xcur][ycur] = 0; // ì´ë™í•œ íšŸìˆ˜
 
     while (!q.empty()) {
         int x = q.front().first;
@@ -23,20 +23,20 @@ void bfs(int xcur, int ycur, int length) {
 
         q.pop();
 
-        // Ã£À¸·Á´ø µµÂø ÁöÁ¡¿¡ µµ´ŞÇÏ¸é
+        // ì°¾ìœ¼ë ¤ë˜ ë„ì°© ì§€ì ì— ë„ë‹¬í•˜ë©´
         if (x == ax && y == ay) {
             cout << dist[x][y] << "\n";
             return;
         }
 
-        // ³ªÀÌÆ®°¡ ÀÌµ¿ÇÒ ¼ö ÀÖ´Â 8°¡ÁöÀÇ °æ¿ì
+        // ë‚˜ì´íŠ¸ê°€ ì´ë™í•  ìˆ˜ ìˆëŠ” 8ê°€ì§€ì˜ ê²½ìš°
         for (int i = 0; i < 8; ++i) {
             int nx = x + dx[i];
             int ny = y + dy[i];
 
             if (nx >= 0 && nx < length && ny >= 0 && ny < length) {
                 if (!isVisited[nx][ny]) {
-                    dist[nx][ny] = dist[x][y] + 1; // ÀÌÀü ÀÌµ¿ °Å¸®ÀÇ +1
+                    dist[nx][ny] = dist[x][y] + 1; // ì´ì „ ì´ë™ ê±°ë¦¬ì˜ +1
                     q.push(make_pair(nx, ny));
                     isVisited[nx][ny] = true;
                 }
@@ -56,15 +56,15 @@ void reset(int length) {
 }
 
 void sol() {
-    // Ã¼½ºÆÇÀÇ ÇÑ º¯ÀÇ ±æÀÌ ÀÔ·Â
+    // ì²´ìŠ¤íŒì˜ í•œ ë³€ì˜ ê¸¸ì´ ì…ë ¥
     int length;
     cin >> length;
 
-    // ÇöÀç ³ªÀÌÆ®ÀÇ À§Ä¡, ÀÌµ¿ÇÒ À§Ä¡ ÀÔ·Â;
+    // í˜„ì¬ ë‚˜ì´íŠ¸ì˜ ìœ„ì¹˜, ì´ë™í•  ìœ„ì¹˜ ì…ë ¥;
     cin >> sx >> sy;
     cin >> ax >> ay;
 
-    // ÀÌµ¿ÇÒ Á¡ÀÇ ÁÂÇ¥¸¦ 1·Î ÁöÁ¤
+    // ì´ë™í•  ì ì˜ ì¢Œí‘œë¥¼ 1ë¡œ ì§€ì •
     maps[ax][ay] = 1;
 
     bfs(sx, sy, length);
