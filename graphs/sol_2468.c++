@@ -6,22 +6,22 @@ using namespace std;
 int height, n;
 int maps[101][101];
 bool isVisited[101][101];
-int dx[4] = { 1, -1, 0, 0 };
+int dx[4] = { 1, -1, 0, 0 }; 
 int dy[4] = { 0, 0, 1, -1 };
 
 void DFS(int xcur, int ycur, int height) {
-    // ÀÌ¹Ì ¹æ¹®ÇÑ °÷ÀÌ¸é ³ª°¡±â
+    // ì´ë¯¸ ë°©ë¬¸í•œ ê³³ì´ë©´ ë‚˜ê°€ê¸°
     if (isVisited[xcur][ycur])
         return;
 
     isVisited[xcur][ycur] = true;
 
-    // µ¿¼­³²ºÏÀ¸·Î ÇÑ Ä­¾¿ ÀÌµ¿ÇÏ¸é¼­ ¾ÈÀü ±¸¿ª Ã£±â
+    // ë™ì„œë‚¨ë¶ìœ¼ë¡œ í•œ ì¹¸ì”© ì´ë™í•˜ë©´ì„œ ì•ˆì „ êµ¬ì—­ ì°¾ê¸°
     for (int i = 0; i < 4; ++i) {
         int x = xcur + dx[i];
         int y = ycur + dy[i];
 
-        // xÁÂÇ¥ y ÁÂÇ¥ ¹üÀ§°¡ maps ³»¿¡¼­ ÀÛµ¿ÇÏ±â
+        // xì¢Œí‘œ y ì¢Œí‘œ ë²”ìœ„ê°€ maps ë‚´ì—ì„œ ì‘ë™í•˜ê¸°
         if (x >= 0 && x < n && y >= 0 && y < n) {
             if (!isVisited[x][y] && maps[x][y] > height) {
                 DFS(x, y, height);
@@ -30,7 +30,7 @@ void DFS(int xcur, int ycur, int height) {
     }
 }
 
-// ³ôÀÌ¸¶´Ù ´Ù¸£¹Ç·Î ¹æ¹® ÃÊ±âÈ­
+// ë†’ì´ë§ˆë‹¤ ë‹¤ë¥´ë¯€ë¡œ ë°©ë¬¸ ì´ˆê¸°í™”
 void reset() {
     for (int i = 0; i < 101; ++i) {
         for (int j = 0; j < 101; ++j) {
@@ -47,7 +47,7 @@ int main() {
 
     cin >> n;
 
-    // ³ôÀÌ ÀÔ·Â¹Ş±â
+    // ë†’ì´ ì…ë ¥ë°›ê¸°
     for (int i = 0; i < n; ++i) {
         for (int j = 0; j < n; ++j) {
             cin >> maps[i][j];
@@ -57,7 +57,7 @@ int main() {
     max_area = 0;
     height = 100;
 
-    // ÃÖ´ë ³ôÀÌ 100¿¡¼­ 1¾¿ °¨¼Ò½ÃÅ°¸ç ¸ğµç ÄÉÀÌ½º ºñ±³
+    // ìµœëŒ€ ë†’ì´ 100ì—ì„œ 1ì”© ê°ì†Œì‹œí‚¤ë©° ëª¨ë“  ì¼€ì´ìŠ¤ ë¹„êµ
     while (height >= 0) {
         for (int i = 0; i < n; ++i) {
             for (int j = 0; j < n; ++j) {
@@ -68,12 +68,12 @@ int main() {
             }
         }
 
-        // ÃÖ´ë ¾ÈÀü±¸¿ª °³¼öº¸´Ù Å« °æ¿ì¿¡¸¸ ÃÊ±âÈ­
+        // ìµœëŒ€ ì•ˆì „êµ¬ì—­ ê°œìˆ˜ë³´ë‹¤ í° ê²½ìš°ì—ë§Œ ì´ˆê¸°í™”
         if (max_area < cnt) {
             max_area = cnt;
         }
 
-        // ³ôÀÌ ³·Ãç¼­ ½ÇÇàÇÏ¹Ç·Î cnt, isVisited ÃÊ±âÈ­
+        // ë†’ì´ ë‚®ì¶°ì„œ ì‹¤í–‰í•˜ë¯€ë¡œ cnt, isVisited ì´ˆê¸°í™”
         cnt = 0;
         height--;
         reset();
