@@ -7,7 +7,7 @@ int	par_node[100001];
 int isVisited[100001];
 int n;
 
-void bfs(int cur) {
+void bfs(int cur) { 
 	queue<int> q;
 	q.push(cur);
 	isVisited[cur] = 1;
