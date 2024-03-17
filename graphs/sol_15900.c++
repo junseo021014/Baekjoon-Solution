@@ -2,7 +2,7 @@
 
 using namespace std;
 
-vector<vector<int>> graph;
+vector<vector<int>> graph; 
 vector<bool> isVisited;
 int n, a, b, cnt = 0;
 
@@ -14,10 +14,10 @@ void DFS(int cur, int level) {
 	isVisited[cur] = 1;
 	
 	for (int i = 0; i < graph[cur].size(); i++) {
-		int next = graph[cur][i]; // ´ÙÀ½ ³ëµå¸¦ ÀÚ½Ä ³ëµå Áß¿¡ °í¸§
-		// ´ÙÀ½ ÀÚ½Ä ³ëµå¸¦ ¹æ¹®ÇÏÁö ¾Ê¾ÒÀ¸¸é DFS Àç½ÇÇà
+		int next = graph[cur][i]; // ë‹¤ìŒ ë…¸ë“œë¥¼ ìì‹ ë…¸ë“œ ì¤‘ì— ê³ ë¦„
+		// ë‹¤ìŒ ìì‹ ë…¸ë“œë¥¼ ë°©ë¬¸í•˜ì§€ ì•Šì•˜ìœ¼ë©´ DFS ì¬ì‹¤í–‰
 		DFS(next, level + 1);
-		// ¸®ÇÁ ³ëµåÀÏ ¶§
+		// ë¦¬í”„ ë…¸ë“œì¼ ë•Œ
 		if (graph[cur].size() == 1 && cur != 1) {
 			cnt += level;
 		}
@@ -39,20 +39,20 @@ void printWinable(int cnt) {
 }
 
 int main() {
-	// Á¤Á¡ÀÇ °³¼ö n (2 <= n <= 500,000)
+	// ì •ì ì˜ ê°œìˆ˜ n (2 <= n <= 500,000)
 	cin >> n;
 
-	// ¸Ş¸ğ¸® ÇÒ´ç ¹× ÃÊ±âÈ­
+	// ë©”ëª¨ë¦¬ í• ë‹¹ ë° ì´ˆê¸°í™”
 	memory(n);
 
-	// ±×·¡ÇÁ ¸¸µé±â
+	// ê·¸ë˜í”„ ë§Œë“¤ê¸°
 	for (int i = 0; i < n - 1; i++) {
 		cin >> a >> b;
 		graph[a].emplace_back(b);
 		graph[b].emplace_back(a);
 	}
 
-	//·çÆ® ³ëµå¿¡¼­ ¸ğµç ¸®ÇÁ ³ëµå±îÁöÀÇ ³ôÀÌ¸¦ DFS¸¦ ÅëÇØ ±¸ÇÏ±â
+	//ë£¨íŠ¸ ë…¸ë“œì—ì„œ ëª¨ë“  ë¦¬í”„ ë…¸ë“œê¹Œì§€ì˜ ë†’ì´ë¥¼ DFSë¥¼ í†µí•´ êµ¬í•˜ê¸°
 	if (n != 2) {
 		DFS(1, 0);
 	}
