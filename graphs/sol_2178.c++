@@ -5,33 +5,33 @@ using namespace std;
 
 int n, m;
 int maps[101][101];
-bool isVisited[101][101];
+bool isVisited[101][101]; 
 int dist[101][101];
 int dx[4] = { 1, -1, 0, 0 };
 int dy[4] = { 0, 0, 1, -1 };
 
 int bfs(int xcur, int ycur) {
-    queue<pair<int, int>> q; // intÇü pair °´Ã¼ Å¥ »ı¼º
-    q.push(make_pair(xcur, ycur)); // ÇöÀç x, y ÁÂÇ¥·Î q¿¡ ¿ä¼Ò Ãß°¡
-    isVisited[xcur][ycur] = true; // ¹æ¹® Ç¥½Ã
-    dist[xcur][ycur] = 1; // 1À» °ÅÃÄ°£ È½¼ö
+    queue<pair<int, int>> q; // intí˜• pair ê°ì²´ í ìƒì„±
+    q.push(make_pair(xcur, ycur)); // í˜„ì¬ x, y ì¢Œí‘œë¡œ qì— ìš”ì†Œ ì¶”ê°€
+    isVisited[xcur][ycur] = true; // ë°©ë¬¸ í‘œì‹œ
+    dist[xcur][ycur] = 1; // 1ì„ ê±°ì³ê°„ íšŸìˆ˜
 
-    // Å¥°¡ ºô ¶§±îÁö
+    // íê°€ ë¹Œ ë•Œê¹Œì§€
     while (!q.empty()) {
-        int x = q.front().first; // ¸Ç ¾Õ Å¥¿¡¼­ Ã¹ ¹øÂ° int ¿ä¼Ò -> x ÁÂÇ¥
-        int y = q.front().second; // ¸Ç ¾Õ Å¥¿¡¼­ µÎ ¹øÂ° int ¿ä¼Ò -> yÁÂÇ¥
+        int x = q.front().first; // ë§¨ ì• íì—ì„œ ì²« ë²ˆì§¸ int ìš”ì†Œ -> x ì¢Œí‘œ
+        int y = q.front().second; // ë§¨ ì• íì—ì„œ ë‘ ë²ˆì§¸ int ìš”ì†Œ -> yì¢Œí‘œ
 
-        q.pop(); // ¿ä¼Ò »èÁ¦
+        q.pop(); // ìš”ì†Œ ì‚­ì œ
 
-        // µ¿¼­³²ºÏ ÇÑ Ä­¾¿ ÀÌµ¿ÇÏ¸ç ±æ Ã£±â
+        // ë™ì„œë‚¨ë¶ í•œ ì¹¸ì”© ì´ë™í•˜ë©° ê¸¸ ì°¾ê¸°
         for (int i = 0; i < 4; ++i) {
             int nextX = x + dx[i];
             int nextY = y + dy[i];
 
-            // ¸ÊÀÇ ¹üÀ§¸¦ ¹ş¾î³ªÁö ¾ÊÀ¸¸é¼­ ¹æ¹®ÇÏÁö ¾ÊÀº 1·Î µÈ ÁÂÇ¥¸¦ Ã£À½
+            // ë§µì˜ ë²”ìœ„ë¥¼ ë²—ì–´ë‚˜ì§€ ì•Šìœ¼ë©´ì„œ ë°©ë¬¸í•˜ì§€ ì•Šì€ 1ë¡œ ëœ ì¢Œí‘œë¥¼ ì°¾ìŒ
             if (nextX >= 0 && nextX < n && nextY >= 0 && nextY < m) {
                 if (!isVisited[nextX][nextY] && maps[nextX][nextY]) {
-                    dist[nextX][nextY] = dist[x][y] + 1; // 1À» °ÅÃÄ°£ È½¼ö¸¦ ÀÌÀü ÁÂÇ¥¿¡¼­ÀÇ °ª¿¡¼­ +1
+                    dist[nextX][nextY] = dist[x][y] + 1; // 1ì„ ê±°ì³ê°„ íšŸìˆ˜ë¥¼ ì´ì „ ì¢Œí‘œì—ì„œì˜ ê°’ì—ì„œ +1
                     q.push(make_pair(nextX, nextY));
                     isVisited[nextX][nextY] = true;
                 }
@@ -39,7 +39,7 @@ int bfs(int xcur, int ycur) {
         }
     }
 
-    // µµÂøÁ¡ n, m ÁÂÇ¥¿¡¼­ÀÇ °Å¸® ¹İÈ¯
+    // ë„ì°©ì  n, m ì¢Œí‘œì—ì„œì˜ ê±°ë¦¬ ë°˜í™˜
     return dist[n - 1][m - 1];
 }
 
@@ -48,7 +48,7 @@ int main() {
 
     cin >> n >> m;
 
-    // ¸Ê¿¡ ¹Ì·Î ÀÔ·Â¹Ş±â
+    // ë§µì— ë¯¸ë¡œ ì…ë ¥ë°›ê¸°
     for (int i = 0; i < n; ++i) {
         string str;
         cin >> str;
