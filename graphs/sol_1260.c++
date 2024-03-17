@@ -2,7 +2,7 @@
 #define fastio ios_base::sync_with_stdio(false);cin.tie(nullptr);cout.tie(nullptr);
 
 using namespace std;
-vector<int> graph[1001];
+vector<int> graph[1001]; 
 int isVisited[1001];
 int n, m, v;
 
@@ -12,8 +12,7 @@ void dfs(int cur) {
 
 	cout << cur << " ";
 	isVisited[cur] = 1;
-
-	//자식 노드 오름차순 정렬
+	
 	sort(graph[cur].begin(), graph[cur].end());
 
 	for (int i = 0; i < graph[cur].size(); ++i) {
