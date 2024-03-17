@@ -7,7 +7,7 @@ vector<bool>chk;
 int n, m, cnt = 0;
 
 void DFS(int rt) {
-	cnt++;
+	cnt++; 
 	chk[rt] = 1;
 	
 	for (int i = 0; i < v[rt].size(); i++) {
