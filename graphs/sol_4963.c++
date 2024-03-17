@@ -6,26 +6,26 @@ using namespace std;
 int w, h;
 int maps[51][51];
 bool isVisited[51][51];
-int dy[8] = { 1,-1,0,0,1,1,-1,-1 };
+int dy[8] = { 1,-1,0,0,1,1,-1,-1 }; 
 int dx[8] = { 0,0,1,-1,1,-1,-1,1 };
 
 void DFS(int xcur, int ycur) {
-    // ÀÌ¹Ì ¹æ¹®ÇÑ °÷ÀÌ¸é Å»Ãâ
+    // ì´ë¯¸ ë°©ë¬¸í•œ ê³³ì´ë©´ íƒˆì¶œ
     if (isVisited[xcur][ycur])
         return;
 
-    // ¹æ¹® Ç¥½Ã
+    // ë°©ë¬¸ í‘œì‹œ
     isVisited[xcur][ycur] = true;
 
-    // 8¹æÇâÀ» µ¹¸é¼­ ´ë°¢¼±±îÁö È®ÀÎ
+    // 8ë°©í–¥ì„ ëŒë©´ì„œ ëŒ€ê°ì„ ê¹Œì§€ í™•ì¸
     for (int i = 0; i < 8; ++i) {
         int nextX = xcur + dx[i];
         int nextY = ycur + dy[i];
 
-        // ´ÙÀ½ x, y ÁÂÇ¥ÀÇ ¹üÀ§ ÁöÁ¤
+        // ë‹¤ìŒ x, y ì¢Œí‘œì˜ ë²”ìœ„ ì§€ì •
         if (nextX >= 0 && nextX < h && nextY >= 0 && nextY < w) {
 
-            // ¹æ¹®ÇÏÁö ¾Ê¾Ò°í, ¼¶ÀÌ¸é DFS ½ÇÇà
+            // ë°©ë¬¸í•˜ì§€ ì•Šì•˜ê³ , ì„¬ì´ë©´ DFS ì‹¤í–‰
             if (!isVisited[nextX][nextY] && maps[nextX][nextY]) {
                 DFS(nextX, nextY);
             }
@@ -33,7 +33,7 @@ void DFS(int xcur, int ycur) {
     }
 }
 
-// ÃÊ±âÈ­ ÇÔ¼ö
+// ì´ˆê¸°í™” í•¨ìˆ˜
 void reset() {
     for (int i = 0; i < h; ++i) {
         for (int j = 0; j < w; ++j) {
@@ -46,21 +46,21 @@ void reset() {
 int main() {
     fastio;
 
-    // Áöµµ¿¡ ÀÔ·Â ¹Ş±â
+    // ì§€ë„ì— ì…ë ¥ ë°›ê¸°
     while (true) {
         cin >> w >> h;
 
-        // 0 0ÀÌ¸é Á¾·á
+        // 0 0ì´ë©´ ì¢…ë£Œ
         if (w == 0 && h == 0)
             break;
 
-        // Áöµµ¿¡ ¼¶, ¹Ù´Ù ÀÔ·Â
+        // ì§€ë„ì— ì„¬, ë°”ë‹¤ ì…ë ¥
         for (int i = 0; i < h; ++i) {
             for (int j = 0; j < w; ++j) {
                 cin >> maps[i][j];
             }
         }
-        // ¼¶ÀÇ °³¼ö
+        // ì„¬ì˜ ê°œìˆ˜
         int cnt = 0;
 
         for (int i = 0; i < h; ++i) {
