@@ -10,7 +10,7 @@ vector<int> p, c, w, b;
 void memory(int k) {
 	graph.resize(n + 1);
 	p.resize(n + 1);
-	c.resize(n + 1);
+	c.resize(n + 1); 
 	w.resize(n + 1);
 	b.resize(n + 1);
 }
@@ -27,18 +27,18 @@ long long paint_tree(int cur, bool isWhite) {
 
 int main() {
 	fastio;
-	cin >> n; // а╓а║ ╟Ё╪Ж
+	cin >> n; // Л═∙Л═░ Й╟°Л┬≤
 
-	// ╦ч╦П╦╝ гр╢Г
+	// К╘■К╙╗К╕╛ М∙═К▀╧
 	memory(n);
 
-	// ╠в╥║га ╩Щ╪╨
+	// Й╥╦К·≤М■└ Л┐²Л└╠
 	for (int i = 0; i < (n - 1); ++i) {
 		cin >> p[i] >> c[i];
 		graph[p[i]].push_back(c[i]);
 	}
 
-	// white, black ╨Я©К ют╥б
+	// white, black К╧└Л ╘ Л·┘К═╔
 	for (int j = 0; j < n; ++j) {
 		cin >> w[j] >> b[j];
 	}
