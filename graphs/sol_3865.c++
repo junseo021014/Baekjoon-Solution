@@ -5,7 +5,7 @@ using namespace std;
 
 int n;
 
-int solve(int m) {
+int solve(int m) { 
 	fastio;
 	map<string, int> mp;
 	vector<vector<int>> w;
