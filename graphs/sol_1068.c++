@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
 
-using namespace std;
+using namespace std; 
 
 vector<vector<int>> v;
 vector<int> leaf_node_cnt;
@@ -26,7 +26,6 @@ void DFS(int idx) {
 }
 
 int main() {
-	//그래프의 크기
 	int n;
 	cin >> n;
 	v.resize(n);
