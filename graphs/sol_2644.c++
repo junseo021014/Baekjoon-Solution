@@ -8,7 +8,7 @@ vector<bool> isVisited;
 int chon_cnt;
 int cnt = 0;
 int n, m, a, b;
-
+ 
 void dfs(int cur, int find) {
 	if (isVisited[cur] == 1)
 		return;
