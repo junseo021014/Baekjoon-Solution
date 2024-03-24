@@ -1,0 +1,43 @@
+#include <bits/stdc++.h>
+#define fastio                        \
+    ios_base::sync_with_stdio(false); \
+    cin.tie(nullptr);                 \
+    cout.tie(nullptr);
+
+using namespace std;
+
+int dp[301];
+int score[301];
+
+int main() {
+    int n;
+
+    cin >> n;
+
+    // n개의 계단의 점수를 입력받음
+    for (int i = 1; i <= n; ++i) {
+        cin >> score[i];
+    }
+
+    // 첫 번째 계단은 첫 번째 계단만을 거쳐 올 수 있으므로
+    dp[1] = score[1];
+
+    // 두 번째 계단은 첫 번째 계단을 거쳐 온게 더 크므로
+    dp[2] = score[1] + score[2];
+
+    // 세 번째 계단은 3연속 밟기 방지를 위해 첫 번째 또는 두 번째 계단중 더 큰 값만 밟음
+    dp[3] = score[3] + max(score[1], score[2]);
+
+    // 네 번째 계단부터는 연속 3개를 밟지 않기 위해 신경 써줘야함
+    // 세 번째 이전의 계단의 최댓값과 이전 계단을 밟고 현재 계단을 밟는 것이 큰지
+    // ( 3연속 밟기 방지한 한 칸 건너 뛰고 밟음 )
+    // 두 번째 이전의 계단에서 이미 3번 연속 밟아 최댓값인 값이 큰지 비교해서 더함
+    // ( 3연속 밟기를 했으므로 여기서 건너뜀 )
+    for (int j = 4; j <= n; ++j) {
+        dp[j] = score[j] + max(dp[j - 3] + score[j - 1], dp[j - 2]);
+    }
+
+    cout << dp[n];
+
+    return 0;
+}
