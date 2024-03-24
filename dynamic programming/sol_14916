@@ -1,0 +1,36 @@
+#include <bits/stdc++.h>
+#define fastio                        \
+    ios_base::sync_with_stdio(false); \
+    cin.tie(nullptr);                 \
+    cout.tie(nullptr);
+
+using namespace std;
+
+int dp[100001];
+
+int main() {
+    int n;
+
+    cin >> n;
+
+    // 1원, 3원이면 거슬러 줄 수 없으니 dp[1] = -1
+    dp[1] = -1;
+    dp[2] = 1;
+    dp[3] = -1;
+    dp[4] = 2;
+    dp[5] = 1;
+    dp[6] = 3;
+    dp[7] = 2;
+    dp[8] = 4;
+
+    // 4부터 n까지의 거스름돈 경우의 수를 저장
+    for (int i = 9; i <= n; ++i) {
+        dp[i] = dp[i - 5] + 1;
+    }
+
+    cout << dp[n];
+
+    return 0;
+}
+
+// 4부터의 규칙은 찾았으나, 그 규칙을 실행 시키기 위해선 8까지의 값을 직접 저장해줘야해서 풀고도 찝찝함이 남았지만, 이보다 간단한 규칙으로 풀 자신이 없어 냅둔 문제이다.
