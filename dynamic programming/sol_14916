@@ -1,0 +1,34 @@
+#include <bits/stdc++.h>
+#define fastio                        \
+    ios_base::sync_with_stdio(false); \
+    cin.tie(nullptr);                 \
+    cout.tie(nullptr);
+
+using namespace std;
+
+int dp[100001];
+
+int main() {
+    int n;
+
+    cin >> n;
+
+    // 규칙이 적용안되는 예외 부분들을 직접 대입
+    dp[1] = -1;
+    dp[2] = 1;
+    dp[3] = -1;
+    dp[4] = 2;
+    dp[5] = 1;
+    dp[6] = 3;
+    dp[7] = 2;
+    dp[8] = 4;
+
+    // 4부터 n까지의 거스름돈 경우의 수를 저장
+    for (int i = 9; i <= n; ++i) {
+        dp[i] = dp[i - 5] + 1;
+    }
+
+    cout << dp[n];
+
+    return 0;
+}
