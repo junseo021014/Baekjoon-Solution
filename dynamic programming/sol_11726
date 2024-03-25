@@ -1,0 +1,28 @@
+#include <bits/stdc++.h>
+#define fastio                        \
+    ios_base::sync_with_stdio(false); \
+    cin.tie(nullptr);                 \
+    cout.tie(nullptr);
+
+using namespace std;
+
+int main() {
+    int dp[1001];
+    int n;
+
+    cin >> n;
+
+    // 규칙이 n >= 3 에서만 성립
+    dp[1] = 1;
+    dp[2] = 2;
+
+    // 이전 두항을 더한 값이 현재항이라는 규칙을 찾아냄
+    // (연산마다 10,007를 나누지 않으면 수가 커져 int형 범위를 벗어남)
+    for (int i = 3; i <= n; ++i) {
+        dp[i] = (dp[i - 1] + dp[i - 2]) % 10007;
+    }
+
+    cout << dp[n];
+
+    return 0;
+}
