@@ -1,0 +1,33 @@
+#include <bits/stdc++.h>
+#define fastio                        \
+    ios_base::sync_with_stdio(false); \
+    cin.tie(nullptr);                 \
+    cout.tie(nullptr);
+
+using namespace std;
+
+int main() {
+    int n, k;
+    int arr[11];
+    int cnt = 0;
+
+    cin >> n >> k;
+
+    // 동전 종류 입력
+    for (int i = 0; i < n; ++i) {
+        cin >> arr[i];
+    }
+
+    // 가장 비싼 동전부터 하나씩 사용하면서 금액을 줄여나감 ( 동전이 오름차순으로 입력되기에 가능 )
+    for (int j = 0; j < n; ++j) {
+        // 해당 동전보다 남은 금액이 더 크면 동전 갯수 cnt증가해주고 금액에서 동전 금액만큼 차감
+        while (arr[n - 1 - j] <= k) {
+            cnt++;
+            k = k - arr[n - 1 - j];
+        }
+    }
+
+    cout << cnt;
+
+    return 0;
+}
