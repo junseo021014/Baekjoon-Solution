@@ -1,0 +1,43 @@
+#include <bits/stdc++.h>
+#define fastio                        \
+    ios_base::sync_with_stdio(false); \
+    cin.tie(nullptr);                 \
+    cout.tie(nullptr);
+
+using namespace std;
+
+int main() {
+    int n;
+    int time[1001];
+
+    cin >> n;
+    
+    // arr배열 n만큼 동적할당
+    int* arr = new int[n];
+    
+    // 사람마다 인출하는데에 걸리는 시간 입력
+    for (int i = 0; i < n; ++i) {
+        cin >> arr[i];
+    }
+
+    // arr 배열 오름차순으로 정렬
+    sort(arr, arr + n);
+
+    // time 배열 0으로 초기화
+    memset(time, 0, sizeof(time));
+
+    time[0] = arr[0];
+
+    // 총 인출 시에 걸리는 시간을 저장할 변수
+    int sum = time[0];
+    for (int i = 1; i < n; ++i) {
+        time[i] = time[i - 1] + arr[i];
+        sum += time[i];
+    }
+
+    cout << sum;
+
+    delete[] arr;
+
+    return 0;
+}
