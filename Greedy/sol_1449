@@ -1,0 +1,43 @@
+#include <bits/stdc++.h>
+#define fastio                        \
+    ios_base::sync_with_stdio(false); \
+    cin.tie(nullptr);                 \
+    cout.tie(nullptr);
+
+using namespace std;
+
+int main() {
+    int n, l;
+
+    cin >> n >> l;
+
+    // 물이 새는 위치 입력받을 배열 동적할당
+    int* arr = new int[n];
+
+    for (int i = 0; i < n; ++i) {
+        cin >> arr[i];
+    }
+
+    // 물이 새는 위치 오름차순 정렬
+    sort(arr, arr + n);
+
+    int cnt = 1; // 필요한 테이프 개수
+
+    // 시작지점은 맨 앞으로 ( 오름차순 정렬되어있으므로 )
+    int start = arr[0];
+
+    for (int j = 1; j < n; ++j) {
+        // 테이프 길이보다 시작지점과의 거리가 더 길면 테이프 개수 + 1, 시작지점 재설정
+        if (l <= arr[j] - start) {
+            cnt++;
+            start = arr[j];
+        }
+    }
+
+    cout << cnt;
+
+    // 동적할당 메모리 해제
+    delete[] arr;
+
+    return 0;
+}
