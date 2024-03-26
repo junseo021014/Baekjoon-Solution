@@ -1,0 +1,48 @@
+#include <bits/stdc++.h>
+#define fastio                        \
+    ios_base::sync_with_stdio(false); \
+    cin.tie(nullptr);                 \
+    cout.tie(nullptr);
+
+using namespace std;
+pair<int, int> score[100001];
+
+int sol(int n) {
+
+    // 지원자의 성적 입력받기
+    for (int i = 0; i < n; ++i) {
+        cin >> score[i].first >> score[i].second;
+    }
+
+    // 서류 결과를 기준으로 오름차순 정렬
+    // 테스트 케이스와 면접자의 범위가 크므로 두 가지 점수를 모두 비교시 시간 초과 발생
+    sort(score, score + n);
+
+    int cnt = 0; // 신입사원의 최대 수
+    int max = score[0].second; // 서류 결과가 제일 좋은 면접자의 면접 점수가 기준
+    for (int i = 0; i < n; ++i) {
+        if (score[i].second <= max) {
+            cnt++;
+            max = score[i].second; // 통과자의 면접 점수로 기준 갱신
+        }
+    }
+    
+    return cnt;
+}
+
+int main() {
+    int t; // 테스트 케이스 개수
+    int n; // 지원자의 숫자
+
+    cin >> t;
+
+    while (t--){
+        cin >> n;
+        cout << sol(n) << "\n";
+    }
+
+    return 0;
+}
+
+// 2차원 배열 동적할당으로 풂 --> 4% 시간 초과
+// vecotr <pair> 로 풂 --> 4% 시간 초과
