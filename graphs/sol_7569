@@ -1,0 +1,82 @@
+#include <bits/stdc++.h>
+#define fastio                        \
+    ios_base::sync_with_stdio(false); \
+    cin.tie(nullptr);                 \
+    cout.tie(nullptr);
+
+using namespace std;
+
+int n, m, h;
+int tomato[101][101][101];
+bool isVisited[101][101][101];
+int dx[] = { 0, 0, -1, 1, 0, 0 };
+int dy[] = { -1, 1, 0, 0, 0, 0 };
+int dz[] = { 0, 0, 0, 0, -1, 1 };
+queue<pair<pair<int, int>, int>> q; // int형 변수 3개를 쌍으로 하는 큐 생성
+
+void bfs(void) {
+    while (!q.empty()) {
+        int x = q.front().first.first;
+        int y = q.front().first.second;
+        int z = q.front().second;
+
+        q.pop(); // 맨 앞 큐 요소 삭제
+
+        // 동서남북상하로 1칸씩 이동하며 탐색
+        for (int i = 0; i < 6; ++i) {
+            int nx = x + dx[i];
+            int ny = y + dy[i];
+            int nz = z + dz[i];
+
+            // 범위를 벗어나지 않고 방문 안했으며 안 익은 토마토가 있는 칸을 탐색
+            if (nx >= 0 && nx < n && ny >= 0 && ny < m && nz < h && nz >= 0) {
+                if (!isVisited[nx][ny][nz] && tomato[nx][ny][nz] == 0) {
+                    isVisited[nx][ny][nz] = true;
+                    tomato[nx][ny][nz] = tomato[x][y][z] + 1;
+                    q.push(make_pair(make_pair(nx, ny), nz));
+                }
+            }
+        }
+    }
+}
+
+int main() {
+    cin >> m >> n >> h;
+
+    // 상자에 토마토 입력받기
+    for (int k = 0; k < h; ++k) {
+        for (int i = 0; i < n; ++i) {
+            for (int j = 0; j < m; ++j) {
+                cin >> tomato[i][j][k];
+                // 익은 토마토라면 큐로
+                if (tomato[i][j][k] == 1) {
+                    q.push(make_pair(make_pair(i, j), k));
+                }
+            }
+        }
+    }
+
+    bfs();
+
+    // 토마토가 모두 익었는지 확인
+    int cnt = 0; // 토마토가 모두 익을 때까지의 최소 날짜
+    for (int k = 0; k < h; ++k) {
+        for (int i = 0; i < n; ++i) {
+            for (int j = 0; j < m; ++j) {
+                // 안 익은 토마토가 있다면 -1 출력
+                if (tomato[i][j][k] == 0) {
+                    cout << -1;
+                    return 0;
+                }
+                // 제일 마지막에 익은 토마토까지 걸린 일수를 저장
+                else if (cnt < tomato[i][j][k]) {
+                    cnt = tomato[i][j][k];
+                }
+            }
+        }
+    }
+
+    cout << (cnt - 1);
+
+    return 0;
+}
