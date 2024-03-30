@@ -1,0 +1,41 @@
+#include <bits/stdc++.h>
+#define fastio                        \
+    ios_base::sync_with_stdio(false); \
+    cin.tie(nullptr);                 \
+    cout.tie(nullptr);
+
+using namespace std;
+
+void sol(int num) {
+    // 2미만인 경우는 직접 출력
+    if (num < 2) {
+        if (num == 0) {
+            cout << "1 0" << "\n";
+        }
+        else if (num == 1) {
+            cout << "0 1" << "\n";
+        }
+    }
+    else {
+        int* dp = new int[num];
+        dp[0] = 1, dp[1] = 1;
+        for (int i = 2; i < num; ++i) {
+            dp[i] = dp[i - 1] + dp[i - 2];
+        }
+        cout << dp[num - 2] << " " << dp[num - 1] << "\n";
+        delete[] dp;
+    }
+}
+
+int main() {
+    int t;
+    cin >> t;
+
+    while (t--) {
+        int num;
+        cin >> num;
+        sol(num);
+    }
+
+    return 0;
+}
