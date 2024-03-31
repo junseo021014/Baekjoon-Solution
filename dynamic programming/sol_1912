@@ -1,0 +1,43 @@
+#include <bits/stdc++.h>
+#define fastio                        \
+    ios_base::sync_with_stdio(false); \
+    cin.tie(nullptr);                 \
+    cout.tie(nullptr);
+
+using namespace std;
+
+int main() {
+    int n;
+
+    cin >> n;
+
+    int* arr = new int[n];
+    int* dp = new int[n];
+
+    for (int i = 0; i < n; ++i) {
+        cin >> arr[i];
+    }
+    
+    dp[0] = arr[0];
+    int max = dp[0];
+
+    for (int i = 1; i < n; ++i) {
+        // 현재 배열보다 지금까지의 누적합이 더 크면 누적합 갱신
+        if (dp[i - 1] + arr[i] > arr[i]) {
+            dp[i] = dp[i - 1] + arr[i];
+        }
+        else {
+            dp[i] = arr[i];
+        }
+
+        // 최댓값 갱신
+        max = dp[i] > max ? dp[i] : max;
+    }
+    
+    cout << max;
+
+    delete[] arr;
+    delete[] dp;
+
+    return 0;
+}
