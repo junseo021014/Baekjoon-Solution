@@ -1,0 +1,52 @@
+#include <bits/stdc++.h>
+#define fastio                        \
+    ios_base::sync_with_stdio(false); \
+    cin.tie(nullptr);                 \
+    cout.tie(nullptr);
+
+using namespace std;
+
+int main() {
+    fastio;
+
+    int n;
+    stack<int> stack;
+    string str;
+    int num;
+
+    cin >> n;
+
+    for (int i = 0; i < n; ++i) {
+        cin >> str;
+        
+        if (str == "push") {
+            cin >> num;
+            stack.push(num);
+        }
+        else if (str == "pop") {
+            if (stack.empty()) {
+                cout << "-1" << "\n";
+            }
+            else {
+                cout << stack.top() << "\n";
+                stack.pop();
+            }
+        }
+        else if (str == "size") {
+            cout << stack.size() << "\n";
+        }
+        else if (str == "empty") {
+            cout << stack.empty() << "\n";
+        }
+        else if (str == "top") {
+            if (stack.empty()) {
+                cout << "-1" << "\n";
+            }
+            else {
+                cout << stack.top() << "\n";
+            }
+        }
+    }
+    
+    return 0;
+}
