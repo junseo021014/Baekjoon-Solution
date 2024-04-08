@@ -1,0 +1,49 @@
+#include <bits/stdc++.h>
+#define fastio                        \
+    ios_base::sync_with_stdio(false); \
+    cin.tie(nullptr);                 \
+    cout.tie(nullptr);
+
+using namespace std;
+
+void sol() {
+    string str; // 입력 받을 문자열
+    stack<char> s; // 문자형 스택
+    string ans = "YES"; // vps인지 구분
+
+    // 문자열 입력
+    cin >> str;
+
+    for (int i = 0; i < str.length(); ++i) {
+        // '('이 입력되면 스택에 저장
+        if (str[i] == '(') {
+            s.push(str[i]);
+        }
+        // 스택이 비지 않았고 ')'이 입력받으면 '('과 상쇄
+        else if (!s.empty() && str[i] == ')' && s.top() == '(') {
+            s.pop();
+        }
+        // 아닌 경우에는 vps X
+        else {
+            ans = "NO";
+            break;
+        }
+    }
+    // 비어있지 않으면 '('이 남았다는 것이므로 NO
+    if (!s.empty()) ans = "NO";
+
+    cout << ans << "\n";
+}
+
+int main() {
+    fastio;
+
+    int t;
+    cin >> t;
+  
+    while (t--) {
+        sol();
+    }
+
+    return 0;
+}
