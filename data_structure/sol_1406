@@ -1,0 +1,66 @@
+#include <bits/stdc++.h>
+#define fastio                        \
+    ios_base::sync_with_stdio(false); \
+    cin.tie(nullptr);                 \
+    cout.tie(nullptr);
+
+using namespace std;
+
+int main() {
+    fastio;
+
+    int num;
+    string str;
+
+    cin >> str;
+    cin >> num;
+
+    list<char> L;
+    list<char>::iterator cursor;
+
+    // 입력받은 문자열을 링크드 리스트에 하나씩 배열
+    for (int i = 0; i < str.size(); ++i) {
+        L.push_back(str[i]);
+    }
+
+    // 커서는 리스트의 마지막에 배치
+    cursor = L.end();
+
+    for (int i = 0; i < num; ++i){
+        char ord;
+        cin >> ord; // 명령어 입력
+
+        // L이 입력되면 커서가 맨 앞이 아니라면 왼쪽으로 한 칸 이동
+        if (ord == 'L') {
+            if (cursor != L.begin()) {
+                cursor--;
+            }
+        }
+        // D가 입력되면 커서가 마지막이 아니라면 오른쪽으로 한 칸 이동
+        else if (ord == 'D') {
+            if (cursor != L.end()) {
+                cursor++;
+            }
+        }
+        // B가 입력되면 커서의 왼쪽 문자 삭제.
+        else if (ord == 'B') {
+            if (cursor != L.begin()) {
+                cursor--;
+                cursor = L.erase(cursor); // 커서가 삭제되면서 주소를 잃으므로 저장
+            }
+        }
+        // P가 입력되면 문자를 하나 입력받고 커서의 왼쪽에 삽입
+        else if (ord == 'P') {
+            char ch;
+            cin >> ch;
+            L.insert(cursor, ch);
+        }
+    }
+
+    // 리스트 출력
+    for (auto k : L) {
+        cout << k;
+    }
+  
+    return 0;
+}
