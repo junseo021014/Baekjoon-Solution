@@ -1,0 +1,45 @@
+#include <bits/stdc++.h>
+#define fastio                        \
+    ios_base::sync_with_stdio(false); \
+    cin.tie(nullptr);                 \
+    cout.tie(nullptr);
+
+using namespace std;
+
+int main() {
+    fastio;
+
+    int n; cin >> n;
+    
+    int cnt = 1; // 스택의 최댓값
+    stack<int> s; // 저장할 스택 
+    vector<char> ans; // '+', '-'을 저장할 벡터
+
+    for (int i = 0; i < n; ++i) {
+        int num;
+        cin >> num;
+        
+        // 스택 쌓은 것이 입력받은 num보다 작으면 같아질 때까지 push 하고 '+'를 벡터에 저장
+        while (cnt <= num) {
+            s.push(cnt);
+            cnt++;
+            ans.push_back('+');
+        }
+        // 스택의 맨 위에 저장된 값이 입력된 num과 같으면 pop 하고 '-'를 벡터에 저장
+        if (s.top() == num) {
+            s.pop();
+            ans.push_back('-');
+        }
+        // 같지 않다면 수열을 만들 수 없다는 것이므로
+        else {
+            cout << "NO";
+            return 0;
+        }
+    }
+
+    for (char c : ans) {
+        cout << c << "\n";
+    }
+
+    return 0;
+}
