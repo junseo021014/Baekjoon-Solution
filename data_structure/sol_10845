@@ -1,0 +1,69 @@
+#include <bits/stdc++.h>
+#define fastio                        \
+    ios_base::sync_with_stdio(false); \
+    cin.tie(nullptr);                 \
+    cout.tie(nullptr);
+
+using namespace std;
+
+int main() {
+    fastio;
+
+    int n; cin >> n;
+    queue<int> q; // 정수형 큐
+
+    for (int i = 0; i < n; ++i) {
+        string op;
+        cin >> op; // 명령어 입력
+
+        // 1. push
+        if (op == "push") {
+            int num;
+            cin >> num;
+            q.push(num);
+        }
+        // 2. pop
+        else if (op == "pop") {
+            if (q.empty()) {
+                cout << "-1" << "\n";
+            }
+            else {
+                cout << q.front() << "\n";
+                q.pop();
+            }
+        }
+        // 3. size
+        else if (op == "size") {
+            cout << q.size() << "\n";
+        }
+        // 4. empty
+        else if (op == "empty") {
+            if (q.empty()) {
+                cout << "1" << "\n";
+            }
+            else {
+                cout << "0" << "\n";
+            }
+        }
+        // 5. front
+        else if (op == "front") {
+            if (q.empty()) {
+                cout << "-1" << "\n";
+            }
+            else {
+                cout << q.front() << "\n";
+            }
+        }
+        // 6. back
+        else if (op == "back") {
+            if (q.empty()) {
+                cout << "-1" << "\n";
+            }
+            else {
+                cout << q.back() << "\n";
+            }
+        }
+    }
+    
+    return 0;
+}
