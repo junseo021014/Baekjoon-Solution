@@ -1,0 +1,84 @@
+#include <bits/stdc++.h>
+#define fastio                        \
+    ios_base::sync_with_stdio(false); \
+    cin.tie(nullptr);                 \
+    cout.tie(nullptr);
+
+using namespace std;
+
+int main() {
+    fastio;
+
+    int n; cin >> n;
+
+    deque<int> dq;
+
+    for (int i = 0; i < n; ++i) {
+        string op;
+        cin >> op;
+
+        // 1. push_front
+        if (op == "push_front") {
+            int num; cin >> num;
+            dq.push_front(num);
+        }
+        // 2. push_back
+        else if (op == "push_back") {
+            int num; cin >> num;
+            dq.push_back(num);
+        }
+        // 3. pop_front
+        else if (op == "pop_front") {
+            if (dq.empty()) {
+                cout << "-1" << "\n";
+            }
+            else {
+                cout << dq.front() << "\n";
+                dq.pop_front();
+            }
+        }
+        // 4. pop_back
+        else if (op == "pop_back") {
+            if (dq.empty()) {
+                cout << "-1" << "\n";
+            }
+            else {
+                cout << dq.back() << "\n";
+                dq.pop_back();
+            }
+        }
+        // 5. size
+        else if (op == "size") {
+            cout << dq.size() << "\n";
+        }
+        // 6. empty
+        else if (op == "empty") {
+            if (dq.empty()) {
+                cout << "1" << "\n";
+            }
+            else {
+                cout << "0" << "\n";
+            }
+        }
+        // 7. front
+        else if (op == "front") {
+            if (dq.empty()) {
+                cout << "-1" << "\n";
+            }
+            else {
+                cout << dq.front() << "\n";
+            }
+        }
+        // 8. back
+        else if (op == "back") {
+            if (dq.empty()) {
+                cout << "-1" << "\n";
+            }
+            else {
+                cout << dq.back() << "\n";
+            }
+        }
+    }
+
+    return 0;
+}
