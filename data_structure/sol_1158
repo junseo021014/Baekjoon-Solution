@@ -1,0 +1,51 @@
+#include <bits/stdc++.h>
+#define fastio                        \
+    ios_base::sync_with_stdio(false); \
+    cin.tie(nullptr);                 \
+    cout.tie(nullptr);
+
+using namespace std;
+
+int main() {
+    fastio;
+
+    int n, k;
+    cin >> n >> k;
+
+    queue<int> q;
+    queue<int> result;
+
+    // 1부터 큐에 삽입
+    for (int i = 1; i <= n; ++i) {
+        q.push(i);
+    }
+
+    // 큐 빌 때까지 사람 제거
+    while (!q.empty()) {
+        // k-1번씩 pop하고 다시 push
+        for (int i = 0; i < k - 1; ++i) {
+            int num = q.front();
+            q.pop();
+            q.push(num);
+        }
+        // 결과 큐에 요세푸스 순열 저장
+        int n = q.front();
+        q.pop();
+        result.push(n);
+    }
+
+    cout << "<";
+
+    // 출력
+    for (int i = 0; i < n; ++i) {
+        cout << result.front();
+        result.pop();
+        if (!result.empty()) {
+            cout << ", ";
+        }
+    }
+
+    cout << ">";
+
+    return 0;
+}
