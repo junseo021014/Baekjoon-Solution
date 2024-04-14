@@ -1,0 +1,56 @@
+#include <bits/stdc++.h>
+#define fastio                        \
+    ios_base::sync_with_stdio(false); \
+    cin.tie(nullptr);                 \
+    cout.tie(nullptr);
+
+using namespace std;
+
+int main() {
+    fastio;
+    
+    string s;
+
+    getline(cin, s);
+    // getline은 개행문자까지 입력받으므로 개행문자 삭제후 마지막에 공백 더함
+    s.erase(remove(s.begin(), s.end(), '\n'), s.end());
+    s.append(" ");
+
+    int size = s.size();
+    stack<char> stk; // 일반 문자열을 뒤집어서 출력할 스택 
+
+    for (int i = 0; i < size; ++i) {
+        // '<'이  현재 문자열이라면 
+        if (s[i] == '<') {
+            // 스택이 비워질 때까지 위에서부터 출력 후 스택 제거
+            while (!stk.empty()) {
+                cout << stk.top();
+                stk.pop();
+            }
+            // '>'이 나올 때까지 그대로 출력
+            while (s[i] != '>') {
+                cout << s[i];
+                i++;
+            }
+            cout << '>';
+            continue;
+        }
+        // '<'이 아닌 일반 문자열일 경우
+        else {
+            // 공백이 나오기 전까지 스택
+            if (s[i] != ' ') {
+                stk.push(s[i]);
+            }
+            // 공백 나오면 스택이 빌 때까지 출력
+            else if (s[i] == ' ') {
+                while (!stk.empty()) {
+                    cout << stk.top();
+                    stk.pop();
+                }
+                cout << ' ';
+            }
+        }
+    }
+
+    return 0;
+}
