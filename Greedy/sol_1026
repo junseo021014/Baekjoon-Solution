@@ -1,0 +1,47 @@
+#include <bits/stdc++.h>
+#define fastio                        \
+    ios_base::sync_with_stdio(false); \
+    cin.tie(nullptr);                 \
+    cout.tie(nullptr);
+
+using namespace std;
+
+int main() {
+    fastio;
+
+    int n; 
+    cin >> n;
+
+    int *A = new int[n];
+    int *B = new int[n];
+    int *S = new int[n];
+
+    // 배열 입력
+    for (int i = 0; i < n; ++i) {
+        cin >> A[i];
+    }
+    
+    for (int i = 0; i < n; ++i) {
+        cin >> B[i];
+    }
+
+    // 배열 오름차순 정렬
+    sort(A, A + n);
+    sort(B, B + n);
+
+    // 함수 S의 최솟값 구하기
+    int sum = 0;
+    for (int i = 0; i < n; ++i) {
+        S[i] = A[i] * B[n - i - 1];
+        sum += S[i];
+    }
+
+    cout << sum;
+
+    // 동적으로 할당된 메모리 해제
+    delete[] A;
+    delete[] B;
+    delete[] S;
+
+    return 0;
+}
